@@ -1,8 +1,11 @@
-﻿namespace Core.Entities.LanguageEntity
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Core.Entities.LanguageEntity
 {
     public class Language
     {
-        public int? LanguageId { get; set; }
+        [Key]
+        public int LanguageId { get; set; }
         public string? Name { get; set; }
         public string? SmallName { get; set; }
     }

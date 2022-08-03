@@ -7,21 +7,20 @@ using Core.Entities.CurrencyEntity;
 using Core.Entities.LanguageEntity;
 using Core.Entities.OtherEntities;
 using Core.Entities.SubscriptionEntity;
+using Core.Entities.TransactionEntity;
 using Core.Entities.UserEntity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
 
 namespace Infrastructure.Data
 {
-    public class ApplicationContext : IdentityDbContext
+    public class ApplicationContext : IdentityDbContext<User>
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) {}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
         public DbSet<Bank>? Banks { get; set; }
         public DbSet<BillingCycle>? BillingCycles { get; set; }
         public DbSet<Card>? Cards { get; set; }
@@ -40,6 +39,7 @@ namespace Infrastructure.Data
         public DbSet<Subscription>? Subscriptions { get; set; }
         public DbSet<SubscriptionList>? SubscriptionLists { get; set; }
         public DbSet<SubscriptionsSearch>? SubscriptionsSearches { get; set; }
+        public DbSet<Transaction>? Transactions { get; set; }
         public DbSet<UserBank>? UserBanks { get; set; }
     }
 }
